@@ -8,8 +8,8 @@ The Back-end side of the project builded with Python and Flask micro-framework. 
 ### Installing Dependencies
 
 To start the TriviaAPI project, you need to have the following tools:
-    1. Python3 and PIP (Back-end)
-    2. Node JS & NPM (Front-end)
+- Python3 and PIP (Back-end)
+- Node JS & NPM (Front-end)
 
 #### Python 3.7
 
@@ -101,9 +101,9 @@ The API have clear and defined errors that will make the debug process easier fo
 
 #### Error Types:
 
-    - 404 - Not Found
-    - 400 - Bad Request
-    - 422 - Unprocesaable
+- 404 - Not Found
+- 400 - Bad Request
+- 422 - Unprocesaable
 
 #### Error Response Example:
 
@@ -121,13 +121,13 @@ This section will contain all the endpoints with their response examples to make
 
 #### GET /categories
 
-    - Return: return list of all the available categories.
+- Return: return list of all the available categories.
 
-    - Sample Request: ```curl http://localhost:5000/categories```
+- Sample Request: ```curl http://localhost:5000/categories```
 
-    - Arguments: None
+- Arguments: None
 
-    - Sample Response:
+- Sample Response:
     ```
     {
           "success": True,
@@ -140,18 +140,18 @@ This section will contain all the endpoints with their response examples to make
     ```
 #### GET /questions
 
-    - Return: 
-        - return list of paginated queations.
-        - total of questions available at the server.
-        - categories available.
-        - the current category.
+- Return: 
+    - return list of paginated queations.
+    - total of questions available at the server.
+    - categories available.
+    - the current category.
 
-    - Sample Request: ```curl http://localhost:5000/questions?page=1```
+- Sample Request: ```curl http://localhost:5000/questions?page=1```
 
-    - Arguments: 
-        - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
+- Arguments: 
+    - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
 
-    - Sample Response:
+- Sample Response:
     ```
     {
         "success": True,
@@ -183,17 +183,17 @@ This section will contain all the endpoints with their response examples to make
 
 #### DELETE /questions/id
 
-    - Return: 
-        - return list of paginated queations.
-        - the deleted question ID.
+- Return: 
+    - return list of paginated queations.
+    - the deleted question ID.
 
-    - Sample Request: ```curl -X "DELETE" http://localhost:5000/questions/11?page=1```
+- Sample Request: ```curl -X "DELETE" http://localhost:5000/questions/11?page=1```
 
-    - Arguments: 
-        - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
-        - it take the id of the question in the URL after the ```questions/```
+- Arguments: 
+    - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
+    - it take the id of the question in the URL after the ```questions/```
 
-    - Sample Response:
+- Sample Response:
     ```
     {
         "success": True,
@@ -219,19 +219,19 @@ This section will contain all the endpoints with their response examples to make
 
 #### POST /questions
 
-    - Return: 
-        - return list of paginated queations that the you searched for.
-        - total of questions available at the server.
-        - categories available.
-        - the current category.
+- Return: 
+    - return list of paginated queations that the you searched for.
+    - total of questions available at the server.
+    - categories available.
+    - the current category.
 
-    - Sample Request: 
-        ```curl -d '{"searchTerm": "Omar"}' -H "Content-Type: application/json" -X "POST" http://localhost:5000/questions```
+- Sample Request: 
+    ```curl -d '{"searchTerm": "Omar"}' -H "Content-Type: application/json" -X "POST" http://localhost:5000/questions```
 
-    - Arguments: 
-        - ```searchTerm=Omar```: it will return the questions that contain the keyword. [OPTIONAL]
+- Arguments: 
+    - ```searchTerm=Omar```: it will return the questions that contain the keyword. [OPTIONAL]
 
-    - Sample Response:
+- Sample Response:
     ```
     {
         "success": True,
@@ -256,26 +256,26 @@ This section will contain all the endpoints with their response examples to make
 
 #### POST /questions
 
-    - Return: 
-        - return list of paginated queations.
-        - total of questions available at the server.
-        - categories available.
-        - the created question.
-        - the id of created question.
+- Return: 
+    - return list of paginated queations.
+    - total of questions available at the server.
+    - categories available.
+    - the created question.
+    - the id of created question.
 
-    - Sample Request: 
-        ```curl -d '{
-            "question": "Who win the elections of 2020 in USA?",
-            "answer": "Joe Biden",
-            "category": "3",
-            "difficulty": 1
-            }' 
-            -H "Content-Type: application/json" -X "POST" http://localhost:5000/questions```
+- Sample Request: 
+    ```curl -d '{
+        "question": "Who win the elections of 2020 in USA?",
+        "answer": "Joe Biden",
+        "category": "3",
+        "difficulty": 1
+        }' 
+        -H "Content-Type: application/json" -X "POST" http://localhost:5000/questions```
 
-    - Arguments: 
-        - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
+- Arguments: 
+    - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
 
-    - Sample Response:
+- Sample Response:
     ```
     {
         "success": True,
@@ -310,19 +310,19 @@ This section will contain all the endpoints with their response examples to make
 
 #### GET /categories/category_id/questions
 
-    - Return: 
-        - return list of paginated queations of specific category.
-        - total of questions available at the server.
-        - categories available.
-        - the current category.
+- Return: 
+    - return list of paginated queations of specific category.
+    - total of questions available at the server.
+    - categories available.
+    - the current category.
 
-    - Sample Request: ```curl http://localhost:5000/categories/3/questions?page=1```
+- Sample Request: ```curl http://localhost:5000/categories/3/questions?page=1```
 
-    - Arguments:
-        - for this route, the category_id in the URL is [REQUIRED]
-        - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
+- Arguments:
+    - for this route, the category_id in the URL is [REQUIRED]
+    - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
 
-    - Sample Response:
+- Sample Response:
     ```
     {
         "success": True,
@@ -349,16 +349,16 @@ This section will contain all the endpoints with their response examples to make
 
 #### POST /quizzes
 
-    - To play quizz in specific category.
+- To play quizz in specific category.
 
-    - Return: 
-        - return a single random question.
+- Return: 
+    - return a single random question.
 
-    - Sample Request: ```curl http://localhost:5000/quizzes```
+- Sample Request: ```curl http://localhost:5000/quizzes```
 
-    - Arguments: None
+- Arguments: None
 
-    - Sample Response:
+- Sample Response:
     ```
     {
         "success": True,
