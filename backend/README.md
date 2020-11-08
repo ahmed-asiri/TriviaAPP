@@ -1,10 +1,15 @@
 # Full Stack Trivia API Backend
 The TriviaAPI is a full stack project that has a ready builded React as the front-end. The back-end was builded by me as a challenge to complete the requirments to finish the course on Udacity.
 The idea of the project is to enable the users to play trivia question games. They can create their own questions and start quizzes based on a category of quastions.
-  
+The Back-end side of the project builded with Python and Flask micro-framework. For this Back-end i have applied the PEP-8 style.
+
 ## Getting Started
 
 ### Installing Dependencies
+
+To start the TriviaAPI project, you need to have the following tools:
+    1. Python3 and PIP (Back-end)
+    2. Node JS & NPM (Front-end)
 
 #### Python 3.7
 
@@ -24,6 +29,12 @@ pip install -r requirements.txt
 
 This will install all of the required packages we selected within the `requirements.txt` file.
 
+#### NPM Dependencies
+
+```bash
+npm install
+```
+
 ##### Key Dependencies
 
 - [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
@@ -31,6 +42,7 @@ This will install all of the required packages we selected within the `requireme
 - [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py. 
 
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
+
 
 ## Database Setup
 With Postgres running, restore a database using the trivia.psql file provided. From the backend folder in terminal run:
@@ -53,6 +65,46 @@ flask run
 Setting the `FLASK_ENV` variable to `development` will detect file changes and restart the server automatically.
 
 Setting the `FLASK_APP` variable to `flaskr` directs flask to use the `flaskr` directory and the `__init__.py` file to find the application. 
+
+#### Testing
+
+To run the tests, run
+```
+dropdb trivia_test
+createdb trivia_test
+psql trivia_test < trivia.psql
+python test_flaskr.py
+```
+
+## API Reference
+
+### Introduction
+
+The API builded to make users eable to perform CRUD operations on Trivia game database easily. It have been builded using Flask micro-framework, which is Python framework.
+This API was builded for the requirments of graduating of the FSND nanodegree of Udactiy.
+
+### Getting Started
+
+#### Base URL
+
+This project is currently work on localhost, it have not been deployed on a online server.
+```
+http://127.0.0.1:5000/
+```
+
+For the port ```5000``` it's based on your configuration.
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Tasks
 
@@ -92,11 +144,3 @@ GET '/categories'
 ```
 
 
-## Testing
-To run the tests, run
-```
-dropdb trivia_test
-createdb trivia_test
-psql trivia_test < trivia.psql
-python test_flaskr.py
-```
