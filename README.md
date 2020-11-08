@@ -8,8 +8,8 @@ The Back-end side of the project builded with Python and Flask micro-framework. 
 ### Installing Dependencies
 
 To start the TriviaAPI project, you need to have the following tools:
-- Python3 and PIP (Back-end)
-- Node JS & NPM (Front-end)
+1. Python3 and PIP (Back-end)
+2. Node JS & NPM (Front-end)
 
 #### Python 3.7
 
