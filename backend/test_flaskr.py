@@ -97,14 +97,14 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(data["success"], True)
 
-    # def test_get_categories_failure(self):
-    #     # initiate request to get all the categories in the DB
-    #     response = self.client().get('/categories')
-    #     data = json.loads(response.data)
+    def test_get_categories_failure(self):
+        # initiate request to get all the categories in the DB
+        response = self.client().get('/categoriess')
+        data = json.loads(response.data)
 
-    #     # assertion test
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertEqual(data["success"], True)
+        # assertion test
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(data["success"], False)
 
     def test_delete_question_success(self):
         # initiate response delete the first questions stored in the DB
