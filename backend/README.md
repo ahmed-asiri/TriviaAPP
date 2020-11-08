@@ -1,5 +1,7 @@
 # Full Stack Trivia API Backend
-
+The TriviaAPI is a full stack project that has a ready builded React as the front-end. The back-end was builded by me as a challenge to complete the requirments to finish the course on Udacity.
+The idea of the project is to enable the users to play trivia question games. They can create their own questions and start quizzes based on a category of quastions.
+  
 ## Getting Started
 
 ### Installing Dependencies
