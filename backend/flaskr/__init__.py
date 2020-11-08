@@ -87,13 +87,13 @@ def create_app(test_config=None):
 
         categories = Category.query.all()
         category_dict = [category.type for category in categories]
-        return {
+        return jsonify({
           "success": True,
           "questions": paged_questions,
           "total_questions": len(questions),
           "categories": category_dict,
           "current_category": None
-        }
+        })
 
     '''
     @TODO:
@@ -200,7 +200,6 @@ def create_app(test_config=None):
               'questions': formatted_questions,
               'created': question.id,
               'question_created': question.question,
-              'questions': formatted_questions,
               'total_questions': len(questions)
             }), 200
 

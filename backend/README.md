@@ -82,6 +82,7 @@ python test_flaskr.py
 
 The API builded to make users eable to perform CRUD operations on Trivia game database easily. It have been builded using Flask micro-framework, which is Python framework.
 This API was builded for the requirments of graduating of the FSND nanodegree of Udactiy.
+All the responses of the API is in JSON format.
 
 ### Getting Started
 
@@ -94,53 +95,284 @@ http://127.0.0.1:5000/
 
 For the port ```5000``` it's based on your configuration.
 
+### Error
 
+The API have clear and defined errors that will make the debug process easier for developers.
 
+#### Error Types:
 
+    - 404 - Not Found
+    - 400 - Bad Request
+    - 422 - Unprocesaable
 
-
-
-
-
-
-
-
-
-## Tasks
-
-One note before you delve into your tasks: for each endpoint you are expected to define the endpoint and response data. The frontend will be a plentiful resource because it is set up to expect certain endpoints and response data formats already. You should feel free to specify endpoints in your own way; if you do so, make sure to update the frontend or you will get some unexpected behavior. 
-
-1. Use Flask-CORS to enable cross-domain requests and set response headers. 
-2. Create an endpoint to handle GET requests for questions, including pagination (every 10 questions). This endpoint should return a list of questions, number of total questions, current category, categories. 
-3. Create an endpoint to handle GET requests for all available categories. 
-4. Create an endpoint to DELETE question using a question ID. 
-5. Create an endpoint to POST a new question, which will require the question and answer text, category, and difficulty score. 
-6. Create a POST endpoint to get questions based on category. 
-7. Create a POST endpoint to get questions based on a search term. It should return any questions for whom the search term is a substring of the question. 
-8. Create a POST endpoint to get questions to play the quiz. This endpoint should take category and previous question parameters and return a random questions within the given category, if provided, and that is not one of the previous questions. 
-9. Create error handlers for all expected errors including 400, 404, 422 and 500. 
-
-REVIEW_COMMENT
-```
-This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
-
-Endpoints
-GET '/categories'
-GET ...
-POST ...
-DELETE ...
-
-GET '/categories'
-- Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
-- Request Arguments: None
-- Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
-{'1' : "Science",
-'2' : "Art",
-'3' : "Geography",
-'4' : "History",
-'5' : "Entertainment",
-'6' : "Sports"}
+#### Error Response Example:
 
 ```
+{
+    "success": False,
+    "error": 404,
+    "message": "Resource Not Found"
+}
+```
 
+### Endpoints Library
 
+This section will contain all the endpoints with their response examples to make everything clear for the users of our API
+
+#### GET /categories
+
+    - Return: return list of all the available categories.
+
+    - Sample Request: ```curl http://localhost:5000/categories```
+
+    - Arguments: None
+
+    - Sample Response:
+    ```
+    {
+          "success": True,
+          "categories": {
+              "1": "Science",
+              "2": "Art",
+              "3": "History"
+          }
+    }
+    ```
+#### GET /questions
+
+    - Return: 
+        - return list of paginated queations.
+        - total of questions available at the server.
+        - categories available.
+        - the current category.
+
+    - Sample Request: ```curl http://localhost:5000/questions?page=1```
+
+    - Arguments: 
+        - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
+
+    - Sample Response:
+    ```
+    {
+        "success": True,
+        "questions": [
+            {
+              "answer": "Omar ibn al-Khattab", 
+              "category": 5, 
+              "difficulty": 2, 
+              "id": 22, 
+              "question": "Who was the bes gladiator in the Arab community?"
+            },
+            {
+              "answer": "30 years", 
+              "category": 5, 
+              "difficulty": 4, 
+              "id": 21, 
+              "question": "How many years Muslims lead the world?"
+            }
+        ],
+        "total_questions": 2,
+        "categories": {
+              "1": "Science",
+              "2": "Art",
+              "3": "History"
+          },
+        "current_category": None
+    }
+    ```
+
+#### DELETE /questions/id
+
+    - Return: 
+        - return list of paginated queations.
+        - the deleted question ID.
+
+    - Sample Request: ```curl -X "DELETE" http://localhost:5000/questions/11?page=1```
+
+    - Arguments: 
+        - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
+        - it take the id of the question in the URL after the ```questions/```
+
+    - Sample Response:
+    ```
+    {
+        "success": True,
+        "questions": [
+            {
+              "answer": "Omar ibn al-Khattab", 
+              "category": 5, 
+              "difficulty": 2, 
+              "id": 22, 
+              "question": "Who was the bes gladiator in the Arab community?"
+            },
+            {
+              "answer": "30 years", 
+              "category": 5, 
+              "difficulty": 4, 
+              "id": 21, 
+              "question": "How many years Muslims lead the world?"
+            }
+        ],
+        "deleted": 11,
+    }
+    ```
+
+#### POST /questions
+
+    - Return: 
+        - return list of paginated queations that the you searched for.
+        - total of questions available at the server.
+        - categories available.
+        - the current category.
+
+    - Sample Request: 
+        ```curl -d '{"searchTerm": "Omar"}' -H "Content-Type: application/json" -X "POST" http://localhost:5000/questions```
+
+    - Arguments: 
+        - ```searchTerm=Omar```: it will return the questions that contain the keyword. [OPTIONAL]
+
+    - Sample Response:
+    ```
+    {
+        "success": True,
+        "questions": [
+            {
+              "answer": "Omar ibn al-Khattab", 
+              "category": 5, 
+              "difficulty": 2, 
+              "id": 22, 
+              "question": "Who was the bes gladiator in the Arab community?"
+            }
+        ],
+        "total_questions": 2,
+        "categories": {
+              "1": "Science",
+              "2": "Art",
+              "3": "History"
+        },
+        "current_category": None
+    }
+    ```
+
+#### POST /questions
+
+    - Return: 
+        - return list of paginated queations.
+        - total of questions available at the server.
+        - categories available.
+        - the created question.
+        - the id of created question.
+
+    - Sample Request: 
+        ```curl -d '{
+            "question": "Who win the elections of 2020 in USA?",
+            "answer": "Joe Biden",
+            "category": "3",
+            "difficulty": 1
+            }' 
+            -H "Content-Type: application/json" -X "POST" http://localhost:5000/questions```
+
+    - Arguments: 
+        - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
+
+    - Sample Response:
+    ```
+    {
+        "success": True,
+        "questions": [
+            {
+              "answer": "Omar ibn al-Khattab", 
+              "category": 5, 
+              "difficulty": 2, 
+              "id": 22, 
+              "question": "Who was the bes gladiator in the Arab community?"
+            },
+            {
+              "answer": "Donald Trump", 
+              "category": 5, 
+              "difficulty": 2, 
+              "id": 25, 
+              "question": "Who is the 45th president of the USA?"
+            }
+        ],
+        "total_questions": 3,
+        "created": 25,
+        "question_created":             
+            {
+              "answer": "Donald Trump", 
+              "category": 5, 
+              "difficulty": 2, 
+              "id": 25, 
+              "question": "Who is the 45th president of the USA?"
+            },
+    }
+    ```
+
+#### GET /categories/category_id/questions
+
+    - Return: 
+        - return list of paginated queations of specific category.
+        - total of questions available at the server.
+        - categories available.
+        - the current category.
+
+    - Sample Request: ```curl http://localhost:5000/categories/3/questions?page=1```
+
+    - Arguments:
+        - for this route, the category_id in the URL is [REQUIRED]
+        - ```page=1```: it will return the page you want with 10 questions per page. [OPTIONAL]
+
+    - Sample Response:
+    ```
+    {
+        "success": True,
+        "questions": [
+            {
+              "answer": "Omar ibn al-Khattab", 
+              "category": 5, 
+              "difficulty": 2, 
+              "id": 22, 
+              "question": "Who was the bes gladiator in the Arab community?"
+            },
+            {
+              "answer": "30 years", 
+              "category": 5, 
+              "difficulty": 4, 
+              "id": 21, 
+              "question": "How many years Muslims lead the world?"
+            }
+        ],
+        "total_questions": 2,
+        "current_category": 3
+    }
+    ```
+
+#### POST /quizzes
+
+    - To play quizz in specific category.
+
+    - Return: 
+        - return a single random question.
+
+    - Sample Request: ```curl http://localhost:5000/quizzes```
+
+    - Arguments: None
+
+    - Sample Response:
+    ```
+    {
+        "success": True,
+        "question": {
+            "answer": "Omar ibn al-Khattab", 
+            "category": 5, 
+            "difficulty": 2, 
+            "id": 22, 
+            "question": "Who was the bes gladiator in the Arab community?"
+        }
+    }
+    ```
+
+## Authors
+
+Ahmed Asiri authored the API endpoints at the (__init__.py) file, the unittest at the (test_flaskr.py), and the README.md file.
+All the other files, folders have been created by Udacity as a project template for the [Full Stack Web Developer Nanodegree](https://classroom.udacity.com/nanodegrees/nd0044-ent/syllabus/core-curriculum).
