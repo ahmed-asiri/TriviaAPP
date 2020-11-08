@@ -47,7 +47,8 @@ def create_app(test_config=None):
   @app.route('/categories')
   def get_categories():
     
-    categories = Category.query.order_by(Category.type).all()
+    categories = Category.query.all()
+    category_dict = {category.id: category.type for category in categories}
     
     # check the len, if no categories exist, abort the request and handle it.
     if len(categories) == 0:
@@ -57,7 +58,7 @@ def create_app(test_config=None):
 
     return jsonify({
       "success": True,
-      "categories": {category.id: category.type for category in categories}
+      "categories": category_dict
     })
 
 
@@ -222,7 +223,7 @@ def create_app(test_config=None):
   def get_questions_by_category(category_id):
     
     # get all the questions by category
-    questions = Question.query.filter(Question.category == str(category_id+1)).all()
+    questions = Question.query.filter(Question.category == str(category_id)).all()
 
     formatted_questions = pagination(request, questions)
 
@@ -269,7 +270,7 @@ def create_app(test_config=None):
       category_questions = Question.query.all()
     else:
       # getting the all questions of the requested category
-      category_questions = Question.query.filter(Question.category == category_type).all()
+      category_questions = Question.query.filter(Question.category == str(category_type)).all()
 
     # abort if this category does not have questions
     if len(category_questions) == 0:
